@@ -1,0 +1,321 @@
+import type { Workspace } from './types';
+import { mobilityData, adsData, coreServicesData, chinookData, northwindData } from './services/mockData';
+
+export const WORKSPACES: Workspace[] = [
+  {
+    id: 'mobility',
+    name: 'Mobility',
+    description: 'Trips, drivers, vehicles, and fares.',
+    tables: [
+      {
+        name: 'trips',
+        description: 'Records of all rides taken by users.',
+        columns: [
+          { name: 'trip_id', type: 'UUID', description: 'Unique identifier for the trip.' },
+          { name: 'rider_id', type: 'UUID', description: 'Foreign key to the users table.' },
+          { name: 'driver_id', type: 'UUID', description: 'Foreign key to the drivers table.' },
+          { name: 'vehicle_id', type: 'INT', description: 'Foreign key to the vehicles table.' },
+          { name: 'start_timestamp', type: 'TIMESTAMP', description: 'When the trip started.' },
+          { name: 'end_timestamp', type: 'TIMESTAMP', description: 'When the trip ended.' },
+          { name: 'start_lat', type: 'DECIMAL(9,6)', description: 'Latitude of trip start.' },
+          { name: 'start_lng', type: 'DECIMAL(9,6)', description: 'Longitude of trip start.' },
+          { name: 'end_lat', type: 'DECIMAL(9,6)', description: 'Latitude of trip end.' },
+          { name: 'end_lng', type: 'DECIMAL(9,6)', description: 'Longitude of trip end.' },
+          { name: 'fare_amount', type: 'DECIMAL(10,2)', description: 'Cost of the trip.' },
+          { name: 'city_id', type: 'INT', description: 'Foreign key to the cities table.' },
+        ],
+        data: mobilityData.trips,
+      },
+      {
+        name: 'users',
+        description: 'Information about riders.',
+        columns: [
+          { name: 'user_id', type: 'UUID', description: 'Unique identifier for the user.' },
+          { name: 'first_name', type: 'VARCHAR(50)', description: "User's first name." },
+          { name: 'last_name', type: 'VARCHAR(50)', description: "User's last name." },
+          { name: 'signup_date', type: 'DATE', description: 'Date the user signed up.' },
+        ],
+        data: mobilityData.users,
+      },
+      {
+        name: 'drivers',
+        description: 'Information about drivers.',
+        columns: [
+          { name: 'driver_id', type: 'UUID', description: 'Unique identifier for the driver.' },
+          { name: 'first_name', type: 'VARCHAR(50)', description: "Driver's first name." },
+          { name: 'rating', type: 'DECIMAL(2,1)', description: 'Average driver rating.' },
+          { name: 'onboarding_date', type: 'DATE', description: 'Date the driver was onboarded.' },
+        ],
+        data: mobilityData.drivers,
+      },
+    ],
+  },
+  {
+    id: 'ads',
+    name: 'Ads',
+    description: 'Campaigns, impressions, and conversions.',
+    tables: [
+      {
+        name: 'ad_campaigns',
+        description: 'Details about advertising campaigns.',
+        columns: [
+          { name: 'campaign_id', type: 'INT', description: 'Unique ID for the campaign.' },
+          { name: 'campaign_name', type: 'VARCHAR(100)', description: 'Name of the campaign.' },
+          { name: 'start_date', type: 'DATE', description: 'Campaign start date.' },
+          { name: 'end_date', type: 'DATE', description: 'Campaign end date.' },
+          { name: 'budget', type: 'DECIMAL(12,2)', description: 'Total budget for the campaign.' },
+        ],
+        data: adsData.ad_campaigns,
+      },
+      {
+        name: 'ad_impressions',
+        description: 'Records of when an ad was shown to a user.',
+        columns: [
+          { name: 'impression_id', type: 'UUID', description: 'Unique ID for the impression.' },
+          { name: 'campaign_id', type: 'INT', description: 'Foreign key to ad_campaigns.' },
+          { name: 'user_id', type: 'UUID', description: 'Foreign key to users table.' },
+          { name: 'impression_timestamp', type: 'TIMESTAMP', description: 'When the ad was shown.' },
+          { name: 'platform', type: 'VARCHAR(20)', description: 'e.g., iOS, Android, Web.' },
+        ],
+        data: adsData.ad_impressions,
+      },
+      {
+        name: 'ad_conversions',
+        description: 'Records of user actions resulting from an ad.',
+        columns: [
+          { name: 'conversion_id', type: 'UUID', description: 'Unique ID for the conversion.' },
+          { name: 'impression_id', type: 'UUID', description: 'Foreign key to ad_impressions.' },
+          { name: 'conversion_timestamp', type: 'TIMESTAMP', description: 'When the conversion happened.' },
+          { name: 'revenue', type: 'DECIMAL(10,2)', description: 'Revenue from the conversion.' },
+        ],
+        data: adsData.ad_conversions,
+      },
+    ],
+  },
+  {
+    id: 'core_services',
+    name: 'Core Services',
+    description: 'Payments, users, and cities.',
+    tables: [
+       {
+        name: 'users',
+        description: 'Information about all users (riders, drivers, etc.).',
+        columns: [
+          { name: 'user_id', type: 'UUID', description: 'Unique identifier for the user.' },
+          { name: 'first_name', type: 'VARCHAR(50)', description: "User's first name." },
+          { name: 'last_name', type: 'VARCHAR(50)', description: "User's last name." },
+          { name: 'signup_date', type: 'DATE', description: 'Date the user signed up.' },
+          { name: 'city_id', type: 'INT', description: 'Foreign key to the cities table.' },
+        ],
+        data: coreServicesData.users,
+      },
+      {
+        name: 'payments',
+        description: 'Transaction records for all services.',
+        columns: [
+          { name: 'payment_id', type: 'UUID', description: 'Unique ID for the payment.' },
+          { name: 'user_id', type: 'UUID', description: 'Foreign key to the users table.' },
+          { name: 'trip_id', type: 'UUID', description: 'Optional foreign key to trips table.' },
+          { name: 'amount', type: 'DECIMAL(10,2)', description: 'Transaction amount.' },
+          { name: 'status', type: 'VARCHAR(20)', description: 'e.g., completed, failed.' },
+          { name: 'created_at', type: 'TIMESTAMP', description: 'Timestamp of the transaction.' },
+        ],
+        data: coreServicesData.payments,
+      },
+      {
+        name: 'cities',
+        description: 'Cities where services are offered.',
+        columns: [
+          { name: 'city_id', type: 'INT', description: 'Unique ID for the city.' },
+          { name: 'city_name', type: 'VARCHAR(50)', description: 'Name of the city.' },
+          { name: 'country', type: 'VARCHAR(50)', description: 'Country of the city.' },
+        ],
+        data: coreServicesData.cities,
+      },
+    ],
+  },
+  {
+    id: 'chinook',
+    name: 'Chinook Digital Media',
+    description: 'A sample database of a digital media store.',
+    tables: [
+      {
+        name: 'artists',
+        description: 'Contains data about artists.',
+        columns: [
+          { name: 'ArtistId', type: 'INT', description: 'Primary key for the artists table.' },
+          { name: 'Name', type: 'NVARCHAR(120)', description: 'The name of the artist.' },
+        ],
+        data: chinookData.artists,
+      },
+      {
+        name: 'albums',
+        description: 'Contains data about albums.',
+        columns: [
+          { name: 'AlbumId', type: 'INT', description: 'Primary key for the albums table.' },
+          { name: 'Title', type: 'NVARCHAR(160)', description: 'The title of the album.' },
+          { name: 'ArtistId', type: 'INT', description: 'Foreign key to the artists table.' },
+        ],
+        data: chinookData.albums,
+      },
+      {
+        name: 'tracks',
+        description: 'Contains data about individual tracks.',
+        columns: [
+          { name: 'TrackId', type: 'INT', description: 'Primary key for the tracks table.' },
+          { name: 'Name', type: 'NVARCHAR(200)', description: 'The name of the track.' },
+          { name: 'AlbumId', type: 'INT', description: 'Foreign key to the albums table.' },
+          { name: 'MediaTypeId', type: 'INT', description: 'Foreign key to the media_types table.' },
+          { name: 'GenreId', type: 'INT', description: 'Foreign key to the genres table.' },
+          { name: 'Composer', type: 'NVARCHAR(220)', description: 'The composer of the track.' },
+          { name: 'Milliseconds', type: 'INT', description: 'The length of the track in milliseconds.' },
+          { name: 'Bytes', type: 'INT', description: 'The size of the track in bytes.' },
+          { name: 'UnitPrice', type: 'DECIMAL(10,2)', description: 'The unit price of the track.' },
+        ],
+        data: chinookData.tracks,
+      },
+      {
+        name: 'invoices',
+        description: 'Contains invoice header data.',
+        columns: [
+          { name: 'InvoiceId', type: 'INT', description: 'Primary key for the invoices table.' },
+          { name: 'CustomerId', type: 'INT', description: 'Foreign key to the customers table.' },
+          { name: 'InvoiceDate', type: 'DATETIME', description: 'The date of the invoice.' },
+          { name: 'BillingCountry', type: 'NVARCHAR(40)', description: 'The country for the billing address.' },
+          { name: 'Total', type: 'DECIMAL(10,2)', description: 'The total amount for the invoice.' },
+        ],
+        data: chinookData.invoices,
+      },
+       {
+        name: 'customers',
+        description: 'Contains data about customers.',
+        columns: [
+          { name: 'CustomerId', type: 'INT', description: 'Primary key for the customers table.' },
+          { name: 'FirstName', type: 'NVARCHAR(40)', description: 'The first name of the customer.' },
+          { name: 'LastName', type: 'NVARCHAR(20)', description: 'The last name of the customer.' },
+          { name: 'Company', type: 'NVARCHAR(80)', description: 'The company of the customer.' },
+          { name: 'Country', type: 'NVARCHAR(40)', description: 'The country of the customer.' },
+          { name: 'Email', type: 'NVARCHAR(60)', description: 'The email of the customer.' },
+        ],
+        data: chinookData.customers,
+      },
+    ],
+  },
+  {
+    id: 'northwind',
+    name: 'Northwind Traders',
+    description: 'A sample database for a fictional trading company.',
+    tables: [
+      {
+        name: 'customers',
+        description: 'Contains data about customers.',
+        columns: [
+          { name: 'CustomerID', type: 'NCHAR(5)', description: 'Primary key for the customers table.' },
+          { name: 'CompanyName', type: 'NVARCHAR(40)', description: 'The name of the company.' },
+          { name: 'ContactName', type: 'NVARCHAR(30)', description: 'The name of the contact person.' },
+          { name: 'City', type: 'NVARCHAR(15)', description: 'The city where the customer is located.' },
+          { name: 'Country', type: 'NVARCHAR(15)', description: 'The country where the customer is located.' },
+        ],
+        data: northwindData.customers,
+      },
+      {
+        name: 'orders',
+        description: 'Contains data about customer orders.',
+        columns: [
+          { name: 'OrderID', type: 'INT', description: 'Primary key for the orders table.' },
+          { name: 'CustomerID', type: 'NCHAR(5)', description: 'Foreign key to the customers table.' },
+          { name: 'EmployeeID', type: 'INT', description: 'Foreign key to the employees table.' },
+          { name: 'OrderDate', type: 'DATETIME', description: 'The date the order was placed.' },
+          { name: 'RequiredDate', type: 'DATETIME', description: 'The date the order is required.' },
+          { name: 'ShippedDate', type: 'DATETIME', description: 'The date the order was shipped.' },
+          { name: 'ShipCountry', type: 'NVARCHAR(15)', description: 'The country to which the order was shipped.' },
+        ],
+        data: northwindData.orders,
+      },
+      {
+        name: 'order_details',
+        description: 'Contains line items for each order.',
+        columns: [
+          { name: 'OrderID', type: 'INT', description: 'Foreign key to the orders table.' },
+          { name: 'ProductID', type: 'INT', description: 'Foreign key to the products table.' },
+          { name: 'UnitPrice', type: 'DECIMAL(10,2)', description: 'The unit price of the product.' },
+          { name: 'Quantity', type: 'SMALLINT', description: 'The quantity of the product ordered.' },
+          { name: 'Discount', type: 'REAL', description: 'The discount applied to the product.' },
+        ],
+        data: northwindData.order_details,
+      },
+      {
+        name: 'products',
+        description: 'Contains data about products.',
+        columns: [
+          { name: 'ProductID', type: 'INT', description: 'Primary key for the products table.' },
+          { name: 'ProductName', type: 'NVARCHAR(40)', description: 'The name of the product.' },
+          { name: 'SupplierID', type: 'INT', description: 'Foreign key to the suppliers table.' },
+          { name: 'CategoryID', type: 'INT', description: 'Foreign key to the categories table.' },
+          { name: 'UnitPrice', type: 'DECIMAL(10,2)', description: 'The unit price of the product.' },
+          { name: 'UnitsInStock', type: 'SMALLINT', description: 'The number of units in stock.' },
+        ],
+        data: northwindData.products,
+      },
+       {
+        name: 'employees',
+        description: 'Contains data about employees.',
+        columns: [
+          { name: 'EmployeeID', type: 'INT', description: 'Primary key for the employees table.' },
+          { name: 'LastName', type: 'NVARCHAR(20)', description: 'The last name of the employee.' },
+          { name: 'FirstName', type: 'NVARCHAR(10)', description: 'The first name of the employee.' },
+          { name: 'Title', type: 'NVARCHAR(30)', description: 'The title of the employee.' },
+          { name: 'BirthDate', type: 'DATETIME', description: 'The birth date of the employee.' },
+          { name: 'HireDate', type: 'DATETIME', description: 'The hire date of the employee.' },
+        ],
+        data: northwindData.employees,
+      },
+    ]
+  }
+];
+
+export const SAMPLE_QUERIES: Record<string, { query: string; tables: string[] }[]> = {
+  mobility: [
+    { query: 'List all users who signed up in the last month.', tables: ['users'] },
+    { query: 'What were the total fares for trips in the last 7 days?', tables: ['trips'] },
+    { query: 'Show me the top 5 drivers with the highest ratings.', tables: ['drivers'] },
+    { query: 'Which driver completed the most trips?', tables: ['trips', 'drivers'] },
+    { query: 'Find the average trip fare per city.', tables: ['trips'] },
+    { query: 'What is the total fare collected per day for the last week?', tables: ['trips'] },
+    { query: 'For each user who took at least 3 trips, find their average trip fare.', tables: ['trips', 'users'] },
+  ],
+  ads: [
+    { query: 'Which ad campaign had the highest budget?', tables: ['ad_campaigns'] },
+    { query: 'List all ad campaigns that are currently active.', tables: ['ad_campaigns'] },
+    { query: 'How many ad impressions were there on iOS last week?', tables: ['ad_impressions'] },
+    { query: 'Calculate the total revenue from conversions for campaign ID 123.', tables: ['ad_conversions', 'ad_impressions'] },
+    { query: 'Find the top 3 users who have the most conversions.', tables: ['ad_impressions', 'ad_conversions'] },
+    { query: 'What is the conversion rate (conversions / impressions) for each platform?', tables: ['ad_impressions', 'ad_conversions'] },
+  ],
+  core_services: [
+    { query: 'Find the total payment amount for all completed transactions.', tables: ['payments'] },
+    { query: 'List all users from the city of "San Francisco".', tables: ['users', 'cities'] },
+    { query: 'How many users signed up each month this year?', tables: ['users'] },
+    { query: 'List the top 5 cities with the most users.', tables: ['users', 'cities'] },
+    { query: 'What is the average payment amount per country?', tables: ['payments', 'users', 'cities'] },
+    { query: 'Find users who have made payments but have not taken any trips.', tables: ['users', 'payments'] },
+  ],
+  chinook: [
+    { query: 'Find the top 10 longest tracks.', tables: ['tracks'] },
+    { query: 'List all albums by the artist "Iron Maiden".', tables: ['albums', 'artists'] },
+    { query: 'Who is the best customer in terms of total spending?', tables: ['customers', 'invoices'] },
+    { query: 'Which artist has the most albums?', tables: ['artists', 'albums'] },
+    { query: 'Show the total invoice amount for each country.', tables: ['invoices'] },
+    { query: 'List the top 5 customers by number of invoices.', tables: ['customers', 'invoices'] },
+    { query: 'Find all artists who have albums with tracks longer than 10 minutes.', tables: ['artists', 'albums', 'tracks'] },
+  ],
+  northwind: [
+    { query: 'List all customers from London.', tables: ['customers'] },
+    { query: 'How many products are currently out of stock?', tables: ['products'] },
+    { query: 'Which country has the most orders?', tables: ['orders'] },
+    { query: 'Find all orders handled by employee "Nancy Davolio".', tables: ['orders', 'employees'] },
+    { query: 'Show the top 5 selling products by revenue.', tables: ['products', 'order_details'] },
+    { query: 'List employees who have handled more than 30 orders.', tables: ['employees', 'orders'] },
+    { query: 'Find the customer with the highest average order value.', tables: ['customers', 'orders', 'order_details'] },
+  ],
+};
