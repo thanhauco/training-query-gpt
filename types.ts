@@ -40,4 +40,5 @@ export interface HistoryEntry {
   timestamp: number;
   executionPlan?: string[];
   recommendations?: string[];
+  canonicalQuery?: string;
 }

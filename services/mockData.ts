@@ -17,6 +17,14 @@ export const mobilityData = {
     { trip_id: 'trip-13', rider_id: 'user-3', driver_id: 'driver-3', vehicle_id: 103, start_timestamp: '2024-06-03T19:45:00Z', end_timestamp: '2024-06-03T20:05:00Z', fare_amount: 17.75, city_id: 1 },
     { trip_id: 'trip-14', rider_id: 'user-5', driver_id: 'driver-4', vehicle_id: 104, start_timestamp: '2024-06-04T11:20:00Z', end_timestamp: '2024-06-04T11:40:00Z', fare_amount: 16.50, city_id: 3 },
     { trip_id: 'trip-15', rider_id: 'user-9', driver_id: 'driver-1', vehicle_id: 101, start_timestamp: '2024-06-05T13:00:00Z', end_timestamp: '2024-06-05T13:30:00Z', fare_amount: 24.00, city_id: 1 },
+    { trip_id: 'trip-16', rider_id: 'user-10', driver_id: 'driver-8', vehicle_id: 108, start_timestamp: '2024-06-10T09:00:00Z', end_timestamp: '2024-06-10T09:15:00Z', fare_amount: 12.00, city_id: 5 },
+    { trip_id: 'trip-17', rider_id: 'user-11', driver_id: 'driver-9', vehicle_id: 109, start_timestamp: '2024-06-11T14:30:00Z', end_timestamp: '2024-06-11T14:50:00Z', fare_amount: 18.50, city_id: 5 },
+    { trip_id: 'trip-18', rider_id: 'user-12', driver_id: 'driver-10', vehicle_id: 110, start_timestamp: '2024-06-12T18:00:00Z', end_timestamp: '2024-06-12T18:25:00Z', fare_amount: 21.25, city_id: 2 },
+    { trip_id: 'trip-19', rider_id: 'user-1', driver_id: 'driver-1', vehicle_id: 101, start_timestamp: '2024-06-13T11:00:00Z', end_timestamp: '2024-06-13T11:10:00Z', fare_amount: 9.50, city_id: 1 },
+    { trip_id: 'trip-20', rider_id: 'user-2', driver_id: 'driver-3', vehicle_id: 103, start_timestamp: '2024-06-14T16:00:00Z', end_timestamp: '2024-06-14T16:45:00Z', fare_amount: 35.00, city_id: 1 },
+    { trip_id: 'trip-21', rider_id: 'user-8', driver_id: 'driver-7', vehicle_id: 107, start_timestamp: '2024-06-15T07:30:00Z', end_timestamp: '2024-06-15T07:45:00Z', fare_amount: 15.20, city_id: 4 },
+    { trip_id: 'trip-22', rider_id: 'user-10', driver_id: 'driver-8', vehicle_id: 108, start_timestamp: '2024-06-16T12:00:00Z', end_timestamp: '2024-06-16T12:20:00Z', fare_amount: 17.00, city_id: 5 },
+    { trip_id: 'trip-23', rider_id: 'user-5', driver_id: 'driver-5', vehicle_id: 105, start_timestamp: '2024-06-17T22:00:00Z', end_timestamp: '2024-06-17T22:30:00Z', fare_amount: 29.50, city_id: 3 },
   ],
   users: [
     { user_id: 'user-1', first_name: 'Alice', last_name: 'Smith', signup_date: '2023-01-15' },
@@ -28,6 +36,11 @@ export const mobilityData = {
     { user_id: 'user-7', first_name: 'George', last_name: 'Costanza', signup_date: '2024-03-10' },
     { user_id: 'user-8', first_name: 'Helen', last_name: 'Troy', signup_date: '2024-04-05' },
     { user_id: 'user-9', first_name: 'Ian', last_name: 'Malcolm', signup_date: '2024-06-01' },
+    { user_id: 'user-10', first_name: 'Jane', last_name: 'Doe', signup_date: '2024-06-02' },
+    { user_id: 'user-11', first_name: 'John', last_name: 'Wick', signup_date: '2024-06-03' },
+    { user_id: 'user-12', first_name: 'Kate', last_name: 'Austen', signup_date: '2024-06-04' },
+    { user_id: 'user-13', first_name: 'Leo', last_name: 'Fitz', signup_date: '2024-06-05' },
+    { user_id: 'user-14', first_name: 'Mona', last_name: 'Lisa', signup_date: '2024-06-06' },
   ],
   drivers: [
     { driver_id: 'driver-1', first_name: 'David', rating: 4.8, onboarding_date: '2022-11-10' },
@@ -37,6 +50,9 @@ export const mobilityData = {
     { driver_id: 'driver-5', first_name: 'Heidi', rating: 4.6, onboarding_date: '2023-10-01' },
     { driver_id: 'driver-6', first_name: 'Ivan', rating: 5.0, onboarding_date: '2024-02-11' },
     { driver_id: 'driver-7', first_name: 'Judy', rating: 4.8, onboarding_date: '2024-03-25' },
+    { driver_id: 'driver-8', first_name: 'Ken', rating: 4.8, onboarding_date: '2024-05-15' },
+    { driver_id: 'driver-9', first_name: 'Laura', rating: 4.9, onboarding_date: '2024-05-20' },
+    { driver_id: 'driver-10', first_name: 'Mike', rating: 4.5, onboarding_date: '2024-06-01' },
   ]
 };
 
@@ -47,6 +63,8 @@ export const adsData = {
     { campaign_id: 789, campaign_name: 'Spring Refresh', start_date: '2024-04-01', end_date: '2024-04-30', budget: 60000.00 },
     { campaign_id: 101, campaign_name: 'Back to School', start_date: '2024-08-01', end_date: '2024-09-15', budget: 80000.00 },
     { campaign_id: 212, campaign_name: 'Black Friday 2024', start_date: '2024-11-20', end_date: '2024-11-30', budget: 120000.00 },
+    { campaign_id: 333, campaign_name: 'New Year New You', start_date: '2025-01-01', end_date: '2025-01-31', budget: 95000.00 },
+    { campaign_id: 444, campaign_name: 'Valentine\'s Special', start_date: '2025-02-01', end_date: '2025-02-14', budget: 45000.00 },
   ],
   ad_impressions: [
     { impression_id: 'imp-1', campaign_id: 123, user_id: 'user-1', impression_timestamp: '2023-06-05T10:00:00Z', platform: 'iOS' },
@@ -61,6 +79,14 @@ export const adsData = {
     { impression_id: 'imp-10', campaign_id: 123, user_id: 'user-4', impression_timestamp: '2023-06-15T20:00:00Z', platform: 'iOS' },
     { impression_id: 'imp-11', campaign_id: 456, user_id: 'user-3', impression_timestamp: '2023-12-01T11:00:00Z', platform: 'Web' },
     { impression_id: 'imp-12', campaign_id: 789, user_id: 'user-5', impression_timestamp: '2024-04-20T18:00:00Z', platform: 'iOS' },
+    { impression_id: 'imp-13', campaign_id: 101, user_id: 'user-6', impression_timestamp: '2024-08-05T10:00:00Z', platform: 'Android' },
+    { impression_id: 'imp-14', campaign_id: 101, user_id: 'user-7', impression_timestamp: '2024-08-06T11:00:00Z', platform: 'iOS' },
+    { impression_id: 'imp-15', campaign_id: 101, user_id: 'user-8', impression_timestamp: '2024-08-07T14:00:00Z', platform: 'Web' },
+    { impression_id: 'imp-16', campaign_id: 212, user_id: 'user-1', impression_timestamp: '2024-11-21T09:00:00Z', platform: 'Web' },
+    { impression_id: 'imp-17', campaign_id: 212, user_id: 'user-2', impression_timestamp: '2024-11-22T15:00:00Z', platform: 'iOS' },
+    { impression_id: 'imp-18', campaign_id: 212, user_id: 'user-3', impression_timestamp: '2024-11-23T18:00:00Z', platform: 'Android' },
+    { impression_id: 'imp-19', campaign_id: 456, user_id: 'user-8', impression_timestamp: '2023-12-10T10:00:00Z', platform: 'iOS' },
+    { impression_id: 'imp-20', campaign_id: 789, user_id: 'user-9', impression_timestamp: '2024-04-25T11:00:00Z', platform: 'Android' },
   ],
   ad_conversions: [
     { conversion_id: 'conv-1', impression_id: 'imp-1', conversion_timestamp: '2023-06-05T10:05:00Z', revenue: 50.00 },
@@ -69,6 +95,11 @@ export const adsData = {
     { conversion_id: 'conv-4', impression_id: 'imp-7', conversion_timestamp: '2023-11-25T12:10:00Z', revenue: 250.00 },
     { conversion_id: 'conv-5', impression_id: 'imp-9', conversion_timestamp: '2024-04-15T16:02:00Z', revenue: 45.00 },
     { conversion_id: 'conv-6', impression_id: 'imp-11', conversion_timestamp: '2023-12-01T11:01:00Z', revenue: 99.99 },
+    { conversion_id: 'conv-7', impression_id: 'imp-13', conversion_timestamp: '2024-08-05T10:15:00Z', revenue: 30.00 },
+    { conversion_id: 'conv-8', impression_id: 'imp-14', conversion_timestamp: '2024-08-07T11:00:00Z', revenue: 85.00 },
+    { conversion_id: 'conv-9', impression_id: 'imp-17', conversion_timestamp: '2024-11-22T15:05:00Z', revenue: 150.75 },
+    { conversion_id: 'conv-10', impression_id: 'imp-18', conversion_timestamp: '2024-11-24T10:00:00Z', revenue: 200.00 },
+    { conversion_id: 'conv-11', impression_id: 'imp-19', conversion_timestamp: '2023-12-10T10:02:00Z', revenue: 65.00 },
   ]
 };
 
@@ -83,6 +114,11 @@ export const coreServicesData = {
     { user_id: 'user-g', first_name: 'Claire', last_name: 'Temple', signup_date: '2023-08-01', city_id: 2 },
     { user_id: 'user-h', first_name: 'Misty', last_name: 'Knight', signup_date: '2023-09-10', city_id: 2 },
     { user_id: 'user-i', first_name: 'Colleen', last_name: 'Wing', signup_date: '2023-10-05', city_id: 2 },
+    { user_id: 'user-j', first_name: 'Peter', last_name: 'Parker', signup_date: '2024-01-15', city_id: 2 },
+    { user_id: 'user-k', first_name: 'Mary', last_name: 'Jane', signup_date: '2024-02-20', city_id: 2 },
+    { user_id: 'user-l', first_name: 'Gwen', last_name: 'Stacy', signup_date: '2024-03-25', city_id: 2 },
+    { user_id: 'user-m', first_name: 'Tony', last_name: 'Stark', signup_date: '2024-04-10', city_id: 1 },
+    { user_id: 'user-n', first_name: 'Steve', last_name: 'Rogers', signup_date: '2024-05-05', city_id: 1 },
   ],
   payments: [
     { payment_id: 'pay-1', user_id: 'user-a', trip_id: 'trip-1', amount: 15.50, status: 'completed', created_at: '2023-10-26T10:21:00Z' },
@@ -95,6 +131,11 @@ export const coreServicesData = {
     { payment_id: 'pay-8', user_id: 'user-g', trip_id: null, amount: 10.00, status: 'completed', created_at: '2024-03-10T16:00:00Z' },
     { payment_id: 'pay-9', user_id: 'user-b', trip_id: 'trip-12', amount: 13.00, status: 'completed', created_at: '2024-06-02T15:16:00Z' },
     { payment_id: 'pay-10', user_id: 'user-c', trip_id: null, amount: 100.00, status: 'failed', created_at: '2024-06-05T18:00:00Z' },
+    { payment_id: 'pay-11', user_id: 'user-j', trip_id: 'trip-16', amount: 12.00, status: 'completed', created_at: '2024-06-10T09:16:00Z' },
+    { payment_id: 'pay-12', user_id: 'user-k', trip_id: 'trip-17', amount: 18.50, status: 'completed', created_at: '2024-06-11T14:51:00Z' },
+    { payment_id: 'pay-13', user_id: 'user-l', trip_id: 'trip-18', amount: 21.25, status: 'completed', created_at: '2024-06-12T18:26:00Z' },
+    { payment_id: 'pay-14', user_id: 'user-m', trip_id: 'trip-19', amount: 9.50, status: 'completed', created_at: '2024-06-13T11:11:00Z' },
+    { payment_id: 'pay-15', user_id: 'user-n', trip_id: null, amount: 50.00, status: 'completed', created_at: '2024-06-18T10:00:00Z' },
   ],
   cities: [
     { city_id: 1, city_name: 'San Francisco', country: 'USA' },
@@ -102,6 +143,8 @@ export const coreServicesData = {
     { city_id: 3, city_name: 'London', country: 'UK' },
     { city_id: 4, city_name: 'Tokyo', country: 'Japan' },
     { city_id: 5, city_name: 'Paris', country: 'France' },
+    { city_id: 6, city_name: 'Sydney', country: 'Australia' },
+    { city_id: 7, city_name: 'Berlin', country: 'Germany' },
   ]
 };
 
@@ -115,6 +158,9 @@ export const chinookData = {
     { ArtistId: 6, Name: 'Led Zeppelin' },
     { ArtistId: 7, Name: 'Metallica' },
     { ArtistId: 8, Name: 'U2' },
+    { ArtistId: 9, Name: 'The Beatles' },
+    { ArtistId: 10, Name: 'Pink Floyd' },
+    { ArtistId: 11, Name: 'Nirvana' },
   ],
   albums: [
     { AlbumId: 1, Title: 'For Those About To Rock We Salute You', ArtistId: 1 },
@@ -127,6 +173,11 @@ export const chinookData = {
     { AlbumId: 8, Title: 'Led Zeppelin IV', ArtistId: 6 },
     { AlbumId: 9, Title: '...And Justice for All', ArtistId: 7 },
     { AlbumId: 10, Title: 'The Joshua Tree', ArtistId: 8 },
+    { AlbumId: 11, Title: 'Abbey Road', ArtistId: 9 },
+    { AlbumId: 12, Title: 'Sgt. Pepper\'s Lonely Hearts Club Band', ArtistId: 9 },
+    { AlbumId: 13, Title: 'The Dark Side of the Moon', ArtistId: 10 },
+    { AlbumId: 14, Title: 'Wish You Were Here', ArtistId: 10 },
+    { AlbumId: 15, Title: 'Nevermind', ArtistId: 11 },
   ],
   tracks: [
     { TrackId: 1, Name: 'For Those About To Rock (We Salute You)', AlbumId: 1, MediaTypeId: 1, GenreId: 1, Composer: 'Angus Young, Malcolm Young, Brian Johnson', Milliseconds: 343719, Bytes: 11170334, UnitPrice: 0.99 },
@@ -139,6 +190,12 @@ export const chinookData = {
     { TrackId: 102, Name: 'Stairway to Heaven', AlbumId: 8, MediaTypeId: 1, GenreId: 1, Composer: 'Jimmy Page, Robert Plant', Milliseconds: 482000, Bytes: 15000000, UnitPrice: 0.99 },
     { TrackId: 103, Name: 'One', AlbumId: 9, MediaTypeId: 1, GenreId: 3, Composer: 'James Hetfield, Lars Ulrich', Milliseconds: 446000, Bytes: 14000000, UnitPrice: 0.99 },
     { TrackId: 104, Name: 'With or Without You', AlbumId: 10, MediaTypeId: 1, GenreId: 7, Composer: 'U2', Milliseconds: 296000, Bytes: 9000000, UnitPrice: 0.99 },
+    { TrackId: 200, Name: 'Come Together', AlbumId: 11, MediaTypeId: 1, GenreId: 1, Composer: 'John Lennon, Paul McCartney', Milliseconds: 259000, Bytes: 8500000, UnitPrice: 0.99 },
+    { TrackId: 201, Name: 'Something', AlbumId: 11, MediaTypeId: 1, GenreId: 1, Composer: 'George Harrison', Milliseconds: 182000, Bytes: 6000000, UnitPrice: 0.99 },
+    { TrackId: 202, Name: 'A Day In The Life', AlbumId: 12, MediaTypeId: 1, GenreId: 1, Composer: 'John Lennon, Paul McCartney', Milliseconds: 337000, Bytes: 11000000, UnitPrice: 0.99 },
+    { TrackId: 203, Name: 'Money', AlbumId: 13, MediaTypeId: 1, GenreId: 1, Composer: 'Roger Waters', Milliseconds: 382000, Bytes: 12500000, UnitPrice: 0.99 },
+    { TrackId: 204, Name: 'Shine On You Crazy Diamond', AlbumId: 14, MediaTypeId: 1, GenreId: 1, Composer: 'David Gilmour, Roger Waters, Richard Wright', Milliseconds: 1590000, Bytes: 52000000, UnitPrice: 1.99 },
+    { TrackId: 205, Name: 'Smells Like Teen Spirit', AlbumId: 15, MediaTypeId: 1, GenreId: 1, Composer: 'Kurt Cobain, Dave Grohl, Krist Novoselic', Milliseconds: 301000, Bytes: 9800000, UnitPrice: 0.99 },
   ],
   customers: [
     { CustomerId: 1, FirstName: 'Luís', LastName: 'Gonçalves', Company: 'Embraer - Empresa Brasileira de Aeronáutica S.A.', Country: 'Brazil', Email: 'luisg@embraer.com.br' },
@@ -148,6 +205,9 @@ export const chinookData = {
     { CustomerId: 30, FirstName: 'Heather', LastName: 'Leacock', Company: null, Country: 'USA', Email: 'hleacock@msn.com' },
     { CustomerId: 40, FirstName: 'Bjørn', LastName: 'Hansen', Company: null, Country: 'Norway', Email: 'bjorn.hansen@yahoo.no' },
     { CustomerId: 50, FirstName: 'Enrique', LastName: 'Muñoz', Company: null, Country: 'Spain', Email: 'enrique_munoz@yahoo.es' },
+    { CustomerId: 55, FirstName: 'Camille', LastName: 'Bernard', Company: null, Country: 'France', Email: 'camille.bernard@example.com' },
+    { CustomerId: 56, FirstName: 'John', LastName: 'Gordon', Company: null, Country: 'USA', Email: 'johngordon@example.com' },
+    { CustomerId: 57, FirstName: 'Frank', LastName: 'Harris', Company: null, Country: 'USA', Email: 'frank.harris@example.com' },
   ],
   invoices: [
     { InvoiceId: 1, CustomerId: 2, InvoiceDate: '2009-01-01T00:00:00', BillingCountry: 'Germany', Total: 1.98 },
@@ -158,6 +218,10 @@ export const chinookData = {
     { InvoiceId: 150, CustomerId: 50, InvoiceDate: '2010-08-05T00:00:00', BillingCountry: 'Spain', Total: 5.94 },
     { InvoiceId: 200, CustomerId: 10, InvoiceDate: '2011-01-13T00:00:00', BillingCountry: 'Brazil', Total: 0.99 },
     { InvoiceId: 201, CustomerId: 10, InvoiceDate: '2011-01-13T00:00:00', BillingCountry: 'Brazil', Total: 15.90 },
+    { InvoiceId: 300, CustomerId: 55, InvoiceDate: '2012-05-22T00:00:00', BillingCountry: 'France', Total: 10.89 },
+    { InvoiceId: 301, CustomerId: 56, InvoiceDate: '2012-05-23T00:00:00', BillingCountry: 'USA', Total: 25.86 },
+    { InvoiceId: 302, CustomerId: 57, InvoiceDate: '2012-05-24T00:00:00', BillingCountry: 'USA', Total: 1.98 },
+    { InvoiceId: 303, CustomerId: 1, InvoiceDate: '2012-06-01T00:00:00', BillingCountry: 'Brazil', Total: 11.92 },
   ],
 };
 
@@ -171,6 +235,10 @@ export const northwindData = {
     { CustomerID: 'BLAUS', CompanyName: 'Blauer See Delikatessen', ContactName: 'Hanna Moos', City: 'Mannheim', Country: 'Germany' },
     { CustomerID: 'BONAP', CompanyName: 'Bon app', ContactName: 'Laurence Lebihan', City: 'Marseille', Country: 'France' },
     { CustomerID: 'CHOPS', CompanyName: 'Chop-suey Chinese', ContactName: 'Yang Wang', City: 'Bern', Country: 'Switzerland' },
+    { CustomerID: 'EASTC', CompanyName: 'Eastern Connection', ContactName: 'Ann Devon', City: 'London', Country: 'UK' },
+    { CustomerID: 'FAMIA', CompanyName: 'Familia Arquibaldo', ContactName: 'Aria Cruz', City: 'Sao Paulo', Country: 'Brazil' },
+    { CustomerID: 'FRANK', CompanyName: 'Frankenversand', ContactName: 'Peter Franken', City: 'München', Country: 'Germany' },
+    { CustomerID: 'GOURL', CompanyName: 'Gourmet Lanchonetes', ContactName: 'André Fonseca', City: 'Campinas', Country: 'Brazil' },
   ],
   orders: [
     { OrderID: 10248, CustomerID: 'ALFKI', EmployeeID: 5, OrderDate: '1996-07-04T00:00:00', ShipCountry: 'Germany' },
@@ -182,6 +250,12 @@ export const northwindData = {
     { OrderID: 10254, CustomerID: 'CHOPS', EmployeeID: 5, OrderDate: '1996-07-11T00:00:00', ShipCountry: 'Switzerland' },
     { OrderID: 10255, CustomerID: 'AROUT', EmployeeID: 9, OrderDate: '1996-07-12T00:00:00', ShipCountry: 'UK' },
     { OrderID: 10256, CustomerID: 'ALFKI', EmployeeID: 3, OrderDate: '1996-07-15T00:00:00', ShipCountry: 'Germany' },
+    { OrderID: 10257, CustomerID: 'FRANK', EmployeeID: 4, OrderDate: '1996-07-16T00:00:00', ShipCountry: 'Germany' },
+    { OrderID: 10258, CustomerID: 'EASTC', EmployeeID: 1, OrderDate: '1996-07-17T00:00:00', ShipCountry: 'UK' },
+    { OrderID: 10259, CustomerID: 'CHOPS', EmployeeID: 4, OrderDate: '1996-07-18T00:00:00', ShipCountry: 'Switzerland' },
+    { OrderID: 10260, CustomerID: 'GOURL', EmployeeID: 4, OrderDate: '1996-07-19T00:00:00', ShipCountry: 'Brazil' },
+    { OrderID: 10261, CustomerID: 'FAMIA', EmployeeID: 2, OrderDate: '1996-07-22T00:00:00', ShipCountry: 'Brazil' },
+    { OrderID: 10262, CustomerID: 'BLAUS', EmployeeID: 8, OrderDate: '1996-07-23T00:00:00', ShipCountry: 'Germany' },
   ],
   order_details: [
     { OrderID: 10248, ProductID: 11, UnitPrice: 14.00, Quantity: 12, Discount: 0 },
@@ -196,6 +270,13 @@ export const northwindData = {
     { OrderID: 10254, ProductID: 24, UnitPrice: 3.60, Quantity: 15, Discount: 0.15 },
     { OrderID: 10255, ProductID: 16, UnitPrice: 13.90, Quantity: 55, Discount: 0.05 },
     { OrderID: 10256, ProductID: 60, UnitPrice: 27.20, Quantity: 15, Discount: 0 },
+    { OrderID: 10257, ProductID: 24, UnitPrice: 4.50, Quantity: 25, Discount: 0.15 },
+    { OrderID: 10258, ProductID: 11, UnitPrice: 21.00, Quantity: 50, Discount: 0.2 },
+    { OrderID: 10258, ProductID: 33, UnitPrice: 2.50, Quantity: 100, Discount: 0.2 },
+    { OrderID: 10259, ProductID: 22, UnitPrice: 21.00, Quantity: 20, Discount: 0 },
+    { OrderID: 10260, ProductID: 41, UnitPrice: 9.65, Quantity: 30, Discount: 0 },
+    { OrderID: 10261, ProductID: 14, UnitPrice: 23.25, Quantity: 10, Discount: 0 },
+    { OrderID: 10262, ProductID: 51, UnitPrice: 53.00, Quantity: 12, Discount: 0 },
   ],
   products: [
     { ProductID: 11, ProductName: 'Queso Cabrales', SupplierID: 5, CategoryID: 4, UnitPrice: 21.00, UnitsInStock: 22 },
@@ -203,13 +284,16 @@ export const northwindData = {
     { ProductID: 16, ProductName: 'Pavlova', SupplierID: 7, CategoryID: 3, UnitPrice: 17.45, UnitsInStock: 29 },
     { ProductID: 20, ProductName: 'Sir Rodney\'s Marmalade', SupplierID: 8, CategoryID: 3, UnitPrice: 81.00, UnitsInStock: 40 },
     { ProductID: 22, ProductName: 'Gustaf\'s Knäckebröd', SupplierID: 9, CategoryID: 5, UnitPrice: 21.00, UnitsInStock: 104 },
-    { ProductID: 24, ProductName: 'Guaraná Fantástica', SupplierID: 10, CategoryID: 1, UnitPrice: 4.50, UnitsInStock: 20 },
+    { ProductID: 24, ProductName: 'Guaraná Fantástica', SupplierID: 10, CategoryID: 1, UnitPrice: 4.50, UnitsInStock: 0 },
     { ProductID: 33, ProductName: 'Geitost', SupplierID: 15, CategoryID: 4, UnitPrice: 2.50, UnitsInStock: 112 },
     { ProductID: 39, ProductName: 'Chartreuse verte', SupplierID: 18, CategoryID: 1, UnitPrice: 18.00, UnitsInStock: 69 },
     { ProductID: 41, ProductName: 'Jack\'s New England Clam Chowder', SupplierID: 19, CategoryID: 8, UnitPrice: 9.65, UnitsInStock: 85 },
     { ProductID: 42, ProductName: 'Singaporean Hokkien Fried Mee', SupplierID: 20, CategoryID: 5, UnitPrice: 14.00, UnitsInStock: 0 },
     { ProductID: 51, ProductName: 'Manjimup Dried Apples', SupplierID: 24, CategoryID: 7, UnitPrice: 53.00, UnitsInStock: 20 },
     { ProductID: 60, ProductName: 'Camembert Pierrot', SupplierID: 28, CategoryID: 4, UnitPrice: 34.00, UnitsInStock: 19 },
+    { ProductID: 65, ProductName: 'Louisiana Fiery Hot Pepper Sauce', SupplierID: 2, CategoryID: 2, UnitPrice: 21.05, UnitsInStock: 76 },
+    { ProductID: 72, ProductName: 'Mozzarella di Giovanni', SupplierID: 14, CategoryID: 4, UnitPrice: 34.80, UnitsInStock: 14 },
+    { ProductID: 77, ProductName: 'Original Frankfurter grüne Soße', SupplierID: 12, CategoryID: 2, UnitPrice: 13.00, UnitsInStock: 32 },
   ],
   employees: [
     { EmployeeID: 1, LastName: 'Davolio', FirstName: 'Nancy', Title: 'Sales Representative', BirthDate: '1948-12-08T00:00:00', HireDate: '1992-05-01T00:00:00' },

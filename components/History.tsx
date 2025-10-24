@@ -56,7 +56,9 @@ const History: React.FC<HistoryProps> = ({ history, workspaces, onSelect, onClea
                 onClick={() => onSelect(entry)}
                 className="w-full text-left p-3 bg-gray-700/50 rounded-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-cyan-500"
               >
-                <p className="text-sm font-medium text-gray-200 truncate">{entry.userQuery}</p>
+                <p className="text-sm font-medium text-gray-200 truncate" title={entry.canonicalQuery || entry.userQuery}>
+                    {entry.canonicalQuery || entry.userQuery}
+                </p>
                 <div className="flex items-center justify-between text-xs text-gray-400 mt-1">
                   <span>{getWorkspaceName(entry.workspaceId)}</span>
                   <span>{formatTimestamp(entry.timestamp)}</span>

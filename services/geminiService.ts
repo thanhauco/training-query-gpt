@@ -246,3 +246,51 @@ ${sqlQuery}
     return { executionPlan: [], recommendations: [] };
   }
 };
+
+export const generateCanonicalQuery = async (sqlQuery: string, schema: string): Promise<string> => {
+  const prompt = `
+You are an expert at translating SQL queries into clear, natural language questions.
+Based on the provided SQL query and the database schema, generate a single, concise, human-readable question that this SQL query would answer.
+
+**Database Schema:**
+${schema}
+
+**SQL Query:**
+\`\`\`sql
+${sqlQuery}
+\`\`\`
+
+**Instructions:**
+- The question should be what a non-technical business user might ask.
+- Keep the question direct and to the point.
+- Output a single JSON object with one key: "query".
+
+**JSON Output:**
+  `.trim();
+
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+      config: {
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            query: {
+              type: Type.STRING,
+              description: "The natural language question."
+            }
+          },
+          required: ['query']
+        }
+      }
+    });
+    const result = JSON.parse(response.text);
+    return result.query;
+  } catch (error) {
+    console.error("Error generating canonical query:", error);
+    // On failure, return an empty string. The app can then fall back to the user's original query.
+    return ""; 
+  }
+};

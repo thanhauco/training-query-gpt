@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import type { Workspace, Table, SampleQuery, SuggestedQuery, HistoryEntry, QueryResult } from './types';
 import { WORKSPACES, SAMPLE_QUERIES } from './constants';
-import { generateSql, generateQuerySuggestions, suggestTablesForQuery, suggestInitialTablesForWorkspace } from './services/geminiService';
+import { generateSql, generateQuerySuggestions, suggestTablesForQuery, suggestInitialTablesForWorkspace, generateCanonicalQuery } from './services/geminiService';
 import * as historyService from './services/historyService';
 import { executeSql } from './services/sqlExecutor';
 import Header from './components/Header';
@@ -194,6 +194,8 @@ ${schemaString}
       
       const { sql, explanation, executionPlan, recommendations } = await generateSql(generationPrompt, schemaString);
       
+      const canonicalQuery = await generateCanonicalQuery(sql, schemaString);
+
       setGeneratedSql(sql);
       setSqlExplanation(explanation);
       setExecutionPlan(executionPlan);
@@ -207,6 +209,7 @@ ${schemaString}
           tableNames: currentTables,
           executionPlan: executionPlan,
           recommendations: recommendations,
+          canonicalQuery: canonicalQuery,
       };
       const updatedHistory = historyService.addToHistory(newEntry);
       setHistory(updatedHistory);
