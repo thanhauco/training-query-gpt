@@ -19,6 +19,9 @@ export const executeSql = async (sql: string, tables: TableData[]): Promise<Exec
                 throw new Error("alasql library not found.");
             }
 
+            // Make the database case-insensitive to handle variations from the AI model (e.g., 'Customers' vs 'customers')
+            alasql.options.casesensitive = false;
+
             // Create a new database to avoid name collisions.
             const dbId = `db_${Date.now()}_${Math.random().toString(36).substring(7)}`;
             alasql(`CREATE DATABASE ${dbId}; USE ${dbId};`);
