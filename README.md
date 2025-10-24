@@ -1,5 +1,7 @@
 # QueryGPT: AI Agent for English to SQL
 
+https://new-querygpt-ai-sql-generator-402996439903.us-west1.run.app/
+
 This project is an interactive web application inspired by Uber's multi-agent RAG (Retrieval-Augmented Generation) system, QueryGPT. It translates natural language questions into SQL queries and allows you to test them instantly, providing a complete, end-to-end solution for data exploration.
 
 ## The Problem
