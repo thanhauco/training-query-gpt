@@ -41,4 +41,5 @@ export interface HistoryEntry {
   executionPlan?: string[];
   recommendations?: string[];
   canonicalQuery?: string;
+  isFavorite?: boolean;
 }

@@ -31,6 +31,7 @@ export const addToHistory = (newEntry: NewHistoryEntry): HistoryEntry[] => {
     ...newEntry,
     id: crypto.randomUUID(),
     timestamp: Date.now(),
+    isFavorite: newEntry.isFavorite ?? false,
   };
 
   const updatedHistory = [entry, ...currentHistory];
@@ -50,4 +51,15 @@ export const clearHistory = (): void => {
   } catch (error) {
     console.error('Failed to clear history from localStorage', error);
   }
+};
+
+export const toggleFavorite = (entryId: string): HistoryEntry[] => {
+  const currentHistory = getHistory();
+  const updatedHistory = currentHistory.map(entry => 
+    entry.id === entryId
+      ? { ...entry, isFavorite: !entry.isFavorite }
+      : entry
+  );
+  saveHistory(updatedHistory);
+  return updatedHistory;
 };

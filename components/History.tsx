@@ -1,15 +1,17 @@
 import React from 'react';
 import type { HistoryEntry, Workspace } from '../types';
 import { TrashIcon } from './icons/TrashIcon';
+import { StarIcon } from './icons/StarIcon';
 
 interface HistoryProps {
   history: HistoryEntry[];
   workspaces: Workspace[];
   onSelect: (entry: HistoryEntry) => void;
   onClear: () => void;
+  onToggleFavorite: (entryId: string) => void;
 }
 
-const History: React.FC<HistoryProps> = ({ history, workspaces, onSelect, onClear }) => {
+const History: React.FC<HistoryProps> = ({ history, workspaces, onSelect, onClear, onToggleFavorite }) => {
     
     const getWorkspaceName = (workspaceId: string) => {
         return workspaces.find(w => w.id === workspaceId)?.name || 'Unknown';
@@ -28,6 +30,40 @@ const History: React.FC<HistoryProps> = ({ history, workspaces, onSelect, onClea
         const diffInDays = Math.floor(diffInHours / 24);
         return `${diffInDays}d ago`;
     }
+
+    const favorites = history.filter(entry => entry.isFavorite);
+    const recent = history.filter(entry => !entry.isFavorite);
+
+    const renderEntry = (entry: HistoryEntry) => (
+        <div
+            key={entry.id}
+            className="flex items-center gap-2 p-3 bg-gray-700/50 rounded-md hover:bg-gray-700 transition-colors focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-800 focus-within:ring-cyan-500"
+        >
+            <button
+                onClick={() => onSelect(entry)}
+                className="flex-1 text-left focus:outline-none"
+            >
+                <p className="text-sm font-medium text-gray-200 truncate" title={entry.canonicalQuery || entry.userQuery}>
+                    {entry.canonicalQuery || entry.userQuery}
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>{getWorkspaceName(entry.workspaceId)}</span>
+                    <span>{formatTimestamp(entry.timestamp)}</span>
+                </div>
+            </button>
+            <button
+                onClick={(event) => {
+                    event.stopPropagation();
+                    onToggleFavorite(entry.id);
+                }}
+                className={`p-1 rounded-md transition-colors ${entry.isFavorite ? 'text-yellow-400 hover:text-yellow-300' : 'text-gray-400 hover:text-gray-200'}`}
+                aria-label={entry.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                title={entry.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            >
+                <StarIcon filled={Boolean(entry.isFavorite)} className="w-4 h-4" />
+            </button>
+        </div>
+    );
 
   return (
     <div className="flex flex-col h-full">
@@ -49,22 +85,25 @@ const History: React.FC<HistoryProps> = ({ history, workspaces, onSelect, onClea
             Your generated queries will appear here.
           </p>
         ) : (
-          <div className="space-y-2">
-            {history.map((entry) => (
-              <button
-                key={entry.id}
-                onClick={() => onSelect(entry)}
-                className="w-full text-left p-3 bg-gray-700/50 rounded-md hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-cyan-500"
-              >
-                <p className="text-sm font-medium text-gray-200 truncate" title={entry.canonicalQuery || entry.userQuery}>
-                    {entry.canonicalQuery || entry.userQuery}
-                </p>
-                <div className="flex items-center justify-between text-xs text-gray-400 mt-1">
-                  <span>{getWorkspaceName(entry.workspaceId)}</span>
-                  <span>{formatTimestamp(entry.timestamp)}</span>
+          <div className="space-y-4">
+            {favorites.length > 0 && (
+                <div>
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-yellow-400 mb-2">Favorites</h3>
+                    <div className="space-y-2">
+                        {favorites.map(renderEntry)}
+                    </div>
                 </div>
-              </button>
-            ))}
+            )}
+            {recent.length > 0 && (
+                <div>
+                    {favorites.length > 0 && (
+                        <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Recent</h3>
+                    )}
+                    <div className="space-y-2">
+                        {recent.map(renderEntry)}
+                    </div>
+                </div>
+            )}
           </div>
         )}
       </div>

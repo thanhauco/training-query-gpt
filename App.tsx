@@ -283,6 +283,11 @@ ${schemaString}
       setHistory([]);
   };
 
+  const handleToggleFavorite = (entryId: string) => {
+      const updatedHistory = historyService.toggleFavorite(entryId);
+      setHistory(updatedHistory);
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 dark:bg-gray-900 light:bg-gray-50 flex flex-col transition-colors">
       <Header />
@@ -343,12 +348,13 @@ ${schemaString}
           )}
 
           <div className="p-6 bg-gray-800/50 rounded-lg border border-gray-700 flex-grow">
-              <History
-                history={history}
-                onSelect={handleHistorySelect}
-                onClear={handleClearHistory}
-                workspaces={WORKSPACES}
-              />
+          <History
+            history={history}
+            onSelect={handleHistorySelect}
+            onClear={handleClearHistory}
+            onToggleFavorite={handleToggleFavorite}
+            workspaces={WORKSPACES}
+          />
           </div>
         </div>
 
