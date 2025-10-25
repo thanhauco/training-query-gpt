@@ -1,9 +1,14 @@
 
 import React from 'react';
+import { useTheme } from '../contexts/ThemeContext';
+import { MoonIcon } from './icons/MoonIcon';
+import { SunIcon } from './icons/SunIcon';
 
 const Header: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
+  
   return (
-    <header className="bg-gray-900/70 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-10">
+    <header className="bg-gray-900/70 dark:bg-gray-900/70 light:bg-white/70 backdrop-blur-sm border-b border-gray-800 dark:border-gray-800 light:border-gray-200 sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
@@ -21,11 +26,21 @@ const Header: React.FC = () => {
                 d="M4 7v10m16-10v10M8 7v10m8-10v10m-4-7v4m-4-2h16"
               />
             </svg>
-            <h1 className="text-xl font-bold text-gray-50">
+            <h1 className="text-xl font-bold text-gray-50 dark:text-gray-50 light:text-gray-900">
               Query<span className="text-cyan-400">GPT</span>
             </h1>
           </div>
-          <p className="hidden md:block text-sm text-gray-400">AI Agent for English to SQL</p>
+          <div className="flex items-center gap-4">
+            <p className="hidden md:block text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">AI Agent for English to SQL</p>
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-200 dark:text-gray-400 dark:hover:text-gray-200 light:text-gray-600 light:hover:text-gray-900 bg-gray-800 dark:bg-gray-800 light:bg-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 light:hover:bg-gray-200 transition-colors"
+              aria-label="Toggle theme"
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
     </header>

@@ -1,5 +1,7 @@
 import React from 'react';
 import type { QueryResult } from '../types';
+import { exportToCSV, exportToJSON } from '../utils/exportUtils';
+import { DownloadIcon } from './icons/DownloadIcon';
 
 interface QueryResultTableProps {
     results: QueryResult;
@@ -24,8 +26,30 @@ const QueryResultTable: React.FC<QueryResultTableProps> = ({ results }) => {
     }
 
     return (
-        <div className="w-full overflow-x-auto border border-gray-700 rounded-md">
-            <table className="min-w-full divide-y divide-gray-700 text-sm">
+        <div className="w-full">
+            <div className="flex items-center justify-between mb-2">
+                <p className="text-xs text-gray-400">{results.length} row{results.length !== 1 ? 's' : ''} returned</p>
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => exportToCSV(results)}
+                        className="flex items-center gap-1.5 px-2 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-md transition-colors"
+                        title="Export as CSV"
+                    >
+                        <DownloadIcon className="w-3.5 h-3.5" />
+                        CSV
+                    </button>
+                    <button
+                        onClick={() => exportToJSON(results)}
+                        className="flex items-center gap-1.5 px-2 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-md transition-colors"
+                        title="Export as JSON"
+                    >
+                        <DownloadIcon className="w-3.5 h-3.5" />
+                        JSON
+                    </button>
+                </div>
+            </div>
+            <div className="w-full overflow-x-auto border border-gray-700 rounded-md">
+                <table className="min-w-full divide-y divide-gray-700 text-sm">
                 <thead className="bg-gray-800/70">
                     <tr>
                         {headers.map((header) => (
@@ -51,6 +75,7 @@ const QueryResultTable: React.FC<QueryResultTableProps> = ({ results }) => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 };

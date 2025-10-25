@@ -15,6 +15,11 @@ In data-driven organizations, engineers and analysts spend a significant amount 
 *   **Visual & Textual Execution Plans:** Toggle between a simple text-based execution plan and an intuitive visual flow-chart with icons for each operation to easily understand and optimize query performance.
 *   **AI-Powered Suggestions:** Get intelligent suggestions for which tables to select based on your query, and discover interesting questions to ask about your selected data.
 *   **Persistent Query History:** Your past queries are automatically saved, allowing you to revisit and reuse them at any time.
+*   **Export Results:** Export query results to CSV or JSON format for further analysis.
+*   **SQL Query Optimization:** Get AI-powered suggestions to optimize your SQL queries for better performance.
+*   **Dark/Light Theme Toggle:** Switch between dark and light themes for comfortable viewing in any environment.
+*   **Query Favorites:** Bookmark frequently used queries for quick access.
+*   **Share Query Links:** Generate shareable links to specific queries with pre-selected tables and workspaces.
 
 ## How It Works: The Multi-Agent RAG Approach
 

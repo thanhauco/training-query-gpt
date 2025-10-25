@@ -284,7 +284,7 @@ ${schemaString}
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
+    <div className="min-h-screen bg-gray-900 dark:bg-gray-900 light:bg-gray-50 flex flex-col transition-colors">
       <Header />
       <main className="flex-grow p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto w-full">
         <div className="flex flex-col space-y-6">
