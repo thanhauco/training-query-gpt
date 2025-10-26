@@ -119,3 +119,16 @@ Generate shareable links that include your workspace selection, table choices, a
 
 ### ⚡ Performance Optimization
 Get AI-powered recommendations for optimizing your SQL queries, including index suggestions and query restructuring tips.
+
+### ⌨️ Keyboard Shortcuts
+Boost your productivity with keyboard shortcuts:
+- **Ctrl + Enter**: Generate SQL query
+- **Ctrl + K**: Focus query input
+- **Ctrl + /**: Show/hide keyboard shortcuts help
+- **Esc**: Close modals
+
+### 🛡️ Error Handling
+Robust error boundary implementation catches and displays errors gracefully, preventing the entire app from crashing.
+
+### 🔔 Toast Notifications
+Get instant feedback on your actions with elegant toast notifications for success, error, warning, and info messages.
