@@ -3,14 +3,37 @@ import type { SuggestedQuery, Workspace } from "../types";
 
 // Assume API_KEY is set in the environment variables
 const API_KEY = process.env.API_KEY;
+const isApiConfigured = Boolean(API_KEY);
+const ai = isApiConfigured ? new GoogleGenAI({ apiKey: API_KEY as string }) : null;
 
-if (!API_KEY) {
-    throw new Error("API_KEY environment variable not set.");
-}
+const parseTableNamesFromSchema = (schema: string): string[] => {
+  const matches = Array.from(schema.matchAll(/CREATE TABLE\s+([a-zA-Z0-9_]+)/gi));
+  return matches.map(match => match[1]);
+};
 
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+const buildFallbackExecutionPlan = (tableName: string) => [
+  `Perform a simple scan on the "${tableName}" table.`,
+  "Return the first 25 rows so you can inspect the data shape.",
+];
+
+const FALLBACK_RECOMMENDATIONS = [
+  "Connect a Gemini API key to enable full AI-powered SQL generation.",
+  "Add or adjust mock data to better mirror your real production datasets.",
+];
 
 export const generateSql = async (prompt: string, schema: string): Promise<{ sql: string; explanation: string; executionPlan: string[], recommendations: string[] }> => {
+  if (!isApiConfigured || !ai) {
+    const tableNames = parseTableNamesFromSchema(schema);
+    const primaryTable = tableNames[0] ?? "mock_table";
+    const sql = `SELECT *\nFROM ${primaryTable}\nLIMIT 25;`;
+    return {
+      sql,
+      explanation: `Fallback SQL preview that returns up to 25 rows from the "${primaryTable}" table.`,
+      executionPlan: buildFallbackExecutionPlan(primaryTable),
+      recommendations: FALLBACK_RECOMMENDATIONS,
+    };
+  }
+
   try {
     // Step 1: Generate the SQL query and its natural language explanation.
     const generationResponse = await ai.models.generateContent({
@@ -69,6 +92,16 @@ export const generateSql = async (prompt: string, schema: string): Promise<{ sql
 
 
 export const generateQuerySuggestions = async (schemaString: string): Promise<SuggestedQuery[]> => {
+  if (!isApiConfigured || !ai) {
+    const tableNames = parseTableNamesFromSchema(schemaString);
+    const baseTable = tableNames[0] ?? "dataset";
+    return [
+      { difficulty: "Easy", query: `Show the latest records from ${baseTable}.` },
+      { difficulty: "Medium", query: `Which ${baseTable} entries changed in the last 30 days?` },
+      { difficulty: "Hard", query: `Summarize ${baseTable} metrics grouped by the most important dimension.` },
+    ];
+  }
+
   const prompt = `
 Based on the following SQL schema, generate exactly 3 natural language query suggestions for a user to ask.
 The suggestions should range in complexity: one 'Easy', one 'Medium', and one 'Hard'.
@@ -114,6 +147,22 @@ Provide the response as a JSON array of objects.
 };
 
 export const suggestTablesForQuery = async (query: string, schema: string): Promise<string[]> => {
+  if (!isApiConfigured || !ai) {
+    const tableNames = parseTableNamesFromSchema(schema);
+    if (tableNames.length === 0) {
+      return [];
+    }
+
+    const normalizedQuery = query.toLowerCase();
+    const matchingTables = tableNames.filter(name => normalizedQuery.includes(name.toLowerCase()));
+
+    if (matchingTables.length > 0) {
+      return matchingTables;
+    }
+
+    return tableNames.slice(0, 3);
+  }
+
   const prompt = `
 You are an expert database schema analyst. Your task is to identify which tables are necessary to answer a user's question, given a database schema.
 
@@ -154,6 +203,10 @@ ${schema}
 };
 
 export const suggestInitialTablesForWorkspace = async (workspace: Workspace): Promise<string[]> => {
+  if (!isApiConfigured || !ai) {
+    return workspace.tables.slice(0, 3).map(table => table.name);
+  }
+
   const tableDescriptions = workspace.tables.map(t => `- ${t.name}: ${t.description}`).join('\n');
   const prompt = `
 You are an expert database architect. Your task is to identify the most important or central tables within a given workspace based on its description and the tables it contains. This is for providing a useful starting point for a user.
@@ -196,6 +249,15 @@ ${tableDescriptions}
 };
 
 export const analyzeQueryPerformance = async (sqlQuery: string, schema: string): Promise<{ executionPlan: string[]; recommendations: string[]; }> => {
+  if (!isApiConfigured || !ai) {
+    const tableNames = parseTableNamesFromSchema(schema);
+    const primaryTable = tableNames[0] ?? "mock_table";
+    return {
+      executionPlan: buildFallbackExecutionPlan(primaryTable),
+      recommendations: FALLBACK_RECOMMENDATIONS,
+    };
+  }
+
   const prompt = `
 You are an expert database performance tuning specialist. Your task is to analyze a SQL query, provide a simplified, human-readable execution plan, and offer actionable recommendations for improvement based on the given schema.
 
@@ -248,6 +310,12 @@ ${sqlQuery}
 };
 
 export const generateCanonicalQuery = async (sqlQuery: string, schema: string): Promise<string> => {
+  if (!isApiConfigured || !ai) {
+    const tableNames = parseTableNamesFromSchema(schema);
+    const primaryTable = tableNames[0] ?? "this dataset";
+    return `What are some recent records from ${primaryTable}?`;
+  }
+
   const prompt = `
 You are an expert at translating SQL queries into clear, natural language questions.
 Based on the provided SQL query and the database schema, generate a single, concise, human-readable question that this SQL query would answer.

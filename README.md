@@ -87,6 +87,7 @@ Create a `.env` file in the root directory and add your Gemini API key:
 ```
 API_KEY=your_gemini_api_key_here
 ```
+You can also name the variable `GEMINI_API_KEY` if you prefer; the app reads either key.
 
 4. Start the development server:
 ```bash
