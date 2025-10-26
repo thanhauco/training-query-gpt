@@ -59,6 +59,62 @@ With the context precisely defined, the user's question and the pruned schema ar
 
 ## Technology Stack
 
--   **Frontend:** React, TypeScript, Tailwind CSS
+-   **Frontend:** React, TypeScript, Tailwind CSS, Vite
 -   **AI Model:** Google Gemini API (`gemini-2.5-pro` for generation, `gemini-2.5-flash` for suggestions/analysis)
--   **In-Browser Database:** AlaSQL for instant query execution.
+-   **In-Browser Database:** AlaSQL for instant query execution
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- Google Gemini API key ([Get one here](https://ai.google.dev/))
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/thanhauco/training-query-gpt.git
+cd training-query-gpt
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up your environment variables:
+Create a `.env` file in the root directory and add your Gemini API key:
+```
+API_KEY=your_gemini_api_key_here
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. Open your browser and navigate to `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Features in Detail
+
+### 🎯 Export Query Results
+After running a query, export your results in CSV or JSON format with a single click. Perfect for sharing data with colleagues or importing into other tools.
+
+### 🎨 Theme Customization
+Toggle between dark and light themes using the button in the header. Your preference is saved automatically.
+
+### ⭐ Query Favorites
+Mark frequently used queries as favorites for quick access. Favorites are highlighted in your query history.
+
+### 🔗 Share Queries
+Generate shareable links that include your workspace selection, table choices, and query text. Perfect for collaboration.
+
+### ⚡ Performance Optimization
+Get AI-powered recommendations for optimizing your SQL queries, including index suggestions and query restructuring tips.
