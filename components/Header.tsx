@@ -3,8 +3,13 @@ import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { MoonIcon } from './icons/MoonIcon';
 import { SunIcon } from './icons/SunIcon';
+import { KeyboardIcon } from './icons/KeyboardIcon';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onShowShortcuts?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onShowShortcuts }) => {
   const { theme, toggleTheme } = useTheme();
   
   return (
@@ -30,8 +35,18 @@ const Header: React.FC = () => {
               Query<span className="text-cyan-400">GPT</span>
             </h1>
           </div>
-          <div className="flex items-center gap-4">
-            <p className="hidden md:block text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">AI Agent for English to SQL</p>
+          <div className="flex items-center gap-2">
+            <p className="hidden md:block text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 mr-2">AI Agent for English to SQL</p>
+            {onShowShortcuts && (
+              <button
+                onClick={onShowShortcuts}
+                className="p-2 rounded-md text-gray-400 hover:text-gray-200 dark:text-gray-400 dark:hover:text-gray-200 light:text-gray-600 light:hover:text-gray-900 bg-gray-800 dark:bg-gray-800 light:bg-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 light:hover:bg-gray-200 transition-colors"
+                aria-label="Keyboard shortcuts"
+                title="Keyboard shortcuts (Ctrl + /)"
+              >
+                <KeyboardIcon className="w-5 h-5" />
+              </button>
+            )}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-md text-gray-400 hover:text-gray-200 dark:text-gray-400 dark:hover:text-gray-200 light:text-gray-600 light:hover:text-gray-900 bg-gray-800 dark:bg-gray-800 light:bg-gray-100 hover:bg-gray-700 dark:hover:bg-gray-700 light:hover:bg-gray-200 transition-colors"

@@ -14,6 +14,8 @@ import QuerySuggestions from './components/QuerySuggestions';
 import History from './components/History';
 import TableSelectorHeader from './components/TableSelectorHeader';
 import SchemaDiagram from './components/SchemaDiagram';
+import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 
 const App: React.FC = () => {
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState<string | null>(null);
@@ -41,6 +43,10 @@ const App: React.FC = () => {
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
   const [queryResult, setQueryResult] = useState<QueryResult | null>(null);
   const [queryError, setQueryError] = useState<string | null>(null);
+
+  // Keyboard shortcuts modal
+  const [showShortcutsModal, setShowShortcutsModal] = useState<boolean>(false);
+  const queryInputRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     setHistory(historyService.getHistory());
@@ -288,9 +294,47 @@ ${schemaString}
       setHistory(updatedHistory);
   };
 
+  // Keyboard shortcuts
+  useKeyboardShortcuts([
+    {
+      key: 'Enter',
+      ctrlKey: true,
+      callback: () => {
+        if (!isLoading && userQuery && selectedWorkspaceId && selectedTableNames.length > 0) {
+          handleGenerateQuery();
+        }
+      },
+      description: 'Generate SQL query'
+    },
+    {
+      key: 'k',
+      ctrlKey: true,
+      callback: () => {
+        queryInputRef.current?.focus();
+      },
+      description: 'Focus query input'
+    },
+    {
+      key: '/',
+      ctrlKey: true,
+      callback: () => {
+        setShowShortcutsModal(prev => !prev);
+      },
+      description: 'Toggle keyboard shortcuts'
+    },
+    {
+      key: 'Escape',
+      callback: () => {
+        setShowShortcutsModal(false);
+      },
+      description: 'Close modals'
+    }
+  ]);
+
   return (
     <div className="min-h-screen bg-gray-900 dark:bg-gray-900 light:bg-gray-50 flex flex-col transition-colors">
-      <Header />
+      <Header onShowShortcuts={() => setShowShortcutsModal(true)} />
+      <KeyboardShortcutsModal isOpen={showShortcutsModal} onClose={() => setShowShortcutsModal(false)} />
       <main className="flex-grow p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto w-full">
         <div className="flex flex-col space-y-6">
           <div className="p-6 bg-gray-800/50 rounded-lg border border-gray-700">
